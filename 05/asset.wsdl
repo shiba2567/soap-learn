@@ -1,0 +1,65 @@
+<?xml version="1.1" encoding="UTF-8"?>  
+<definitions
+    name="AssetService"
+    targetNamespace="http://example.com/asset"
+    xmlns:tns="http://example.com/asset"
+    xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+    xmlns="http://schemas.xmlsoap.org/wsdl/">
+
+  <!-- 1. types -->
+  <types>
+    <xsd:schema targetNamespace="http://example.com/asset">
+      <xsd:element name="AssetRequest">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="assetId" type="xsd:integer"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="AssetResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="assetDetail" type="xsd:anyType"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:schema>
+  </types>
+
+  <!-- 2. message -->
+  <message name="GetAssetRequest">
+    <part name="parameters" element="tns:AssetRequest"/>
+  </message>
+  
+  <message name="GetAssetResponse">
+    <part name="parameters" element="tns:AssetResponse"/>
+  </message>
+
+  <!-- 3. portType -->
+  <portType name="AssetPortType">
+    <operation name="GetAsset">
+      <input message="tns:GetAssetRequest"/>
+      <output message="tns:GetAssetResponse"/>
+    </operation>
+  </portType>
+
+  <!-- 4. binding -->
+  <binding name="AssetBinding" type="tns:AssetPortType">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <operation name="GetAsset">
+      <soap:operation soapAction="http://example.com/asset/GetAsset"/>
+      <input><soap:body use="literal"/></input>
+      <output><soap:body use="literal"/></output>
+    </operation>
+  </binding>
+
+  <!-- 5. service -->
+  <service name="AssetService">
+    <port name="AssetPort" binding="tns:AssetBinding">
+      <soap:address location="http://localhost/soap-learn/05/soap-server.php"/>
+    </port>
+  </service>
+</definitions>
+<!-- End of file: 05/asset.wsdl -->

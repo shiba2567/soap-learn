@@ -8,8 +8,9 @@ try {
         'exceptions' => true, // เปิดการโยนข้อผิดพลาด
     ]);
 
+    $year = $_GET['year'] ?? 2567; // ใช้ปี 2567 เป็นค่าเริ่มต้นถ้าไม่ได้ระบุ
     // Call the service
-    $result = $client->GetAssets(['year' => 2567]); // เรียกใช้ GetAssets แทน GetAsset เพื่อดึงข้อมูลสินทรัพย์ทั้งหมด
+    $result = $client->GetAssets(['year' => $year]); // เรียกใช้ GetAssets แทน GetAsset เพื่อดึงข้อมูลสินทรัพย์ทั้งหมด
 
 
 

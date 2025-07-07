@@ -7,7 +7,8 @@ class SoapService {
     public function GetAssets($request) {
         global $con;
 
-      
+        // set utf8 encoding
+        mysqli_set_charset($con, 'utf8');
 
         // ค้นหาข้อมูลสินทรัพย์จากฐานข้อมูล
         $query = "SELECT * FROM assets";

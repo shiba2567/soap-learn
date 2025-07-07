@@ -9,6 +9,9 @@ class SoapService {
 
         $year= $request->year ?? 2567; // ใช้ปีที่ส่งมาในคำขอ ถ้าไม่มีให้ใช้ปี 2567
 
+        // set utf8 encoding
+        mysqli_set_charset($con, 'utf8');
+        
         // ค้นหาข้อมูลสินทรัพย์จากฐานข้อมูล
         $query = "SELECT a.SubClassID assetID, s.SubClassName as assetName,  
 count(a.AssetID) AS assetCount FROM `vwAsset` a

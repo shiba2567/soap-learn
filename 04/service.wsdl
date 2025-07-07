@@ -1,31 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<definitions
-    name="SoapService"
-    targetNamespace="http://example.com/calculator"
-    xmlns:tns="http://example.com/calculator"
-    xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
-    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
-    xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
-    xmlns="http://schemas.xmlsoap.org/wsdl/">
+<definitions name="SoapService" targetNamespace="http://example.com/calculator"
+  xmlns:tns="http://example.com/calculator"
+  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+  xmlns="http://schemas.xmlsoap.org/wsdl/">
 
   <!-- 1. types -->
   <types>
-  <xsd:schema targetNamespace="http://example.com/calculator">
-            <xsd:element name="HelloRequest">
-                <xsd:complexType>
-                    <xsd:sequence>
-                        <xsd:element name="name" type="xsd:string"/>
-                    </xsd:sequence>
-                </xsd:complexType>
-            </xsd:element>
-            <xsd:element name="HelloResponse">
-                <xsd:complexType>
-                    <xsd:sequence>
-                        <xsd:element name="greeting" type="xsd:string"/>
-                    </xsd:sequence>
-                </xsd:complexType>
-            </xsd:element>
-        </xsd:schema>
+    <xsd:schema targetNamespace="http://example.com/calculator">
+      <xsd:element name="HelloRequest">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="name" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="HelloResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="greeting" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:schema>
 
     <xsd:schema targetNamespace="http://example.com/calculator">
       <xsd:element name="AddRequest">
@@ -44,15 +42,69 @@
         </xsd:complexType>
       </xsd:element>
     </xsd:schema>
+
+    <xsd:schema targetNamespace="http://example.com/calculator">
+      <xsd:element name="SubtractRequest">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="a" type="xsd:int"/>
+            <xsd:element name="b" type="xsd:int"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="SubtractResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="result" type="xsd:int"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:schema>
+
+    <xsd:schema targetNamespace="http://example.com/calculator">
+      <xsd:element name="MultiplyRequest">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="a" type="xsd:int"/>
+            <xsd:element name="b" type="xsd:int"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="MultiplyResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="result" type="xsd:int"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:schema>
+
+    <xsd:schema targetNamespace="http://example.com/calculator">
+      <xsd:element name="DivideRequest">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="a" type="xsd:int"/>
+            <xsd:element name="b" type="xsd:int"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="DivideResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="result" type="xsd:int"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:schema>
   </types>
 
   <!-- 2. message -->
-    <message name="SayHelloRequest">
-        <part name="parameters" element="tns:HelloRequest"/>
-    </message>
-    <message name="SayHelloResponse">
-        <part name="parameters" element="tns:HelloResponse"/>
-    </message>
+  <message name="SayHelloRequest">
+    <part name="parameters" element="tns:HelloRequest"/>
+  </message>
+  <message name="SayHelloResponse">
+    <part name="parameters" element="tns:HelloResponse"/>
+  </message>
 
   <message name="AddRequest">
     <part name="parameters" element="tns:AddRequest"/>
@@ -61,19 +113,52 @@
     <part name="parameters" element="tns:AddResponse"/>
   </message>
 
+  <message name="SubtractRequest">
+    <part name="parameters" element="tns:SubtractRequest"/>
+  </message>
+  <message name="SubtractResponse">
+    <part name="parameters" element="tns:SubtractResponse"/>
+  </message>
+  <message name="MultiplyRequest">
+    <part name="parameters" element="tns:MultiplyRequest"/>
+  </message>
+  <message name="MultiplyResponse">
+    <part name="parameters" element="tns:MultiplyResponse"/>
+  </message>
+  <message name="DivideRequest">
+    <part name="parameters" element="tns:DivideRequest"/>
+  </message>
+  <message name="DivideResponse">
+    <part name="parameters" element="tns:DivideResponse"/>
+  </message>
+
+
   <!-- 3. portType -->
 
 
 
   <portType name="SoapPortType">
-   <operation name="sayHello">
-            <input message="tns:SayHelloRequest"/>
-            <output message="tns:SayHelloResponse"/>
-        </operation>
+    <operation name="sayHello">
+      <input message="tns:SayHelloRequest"/>
+      <output message="tns:SayHelloResponse"/>
+    </operation>
     <operation name="Add">
       <input message="tns:AddRequest"/>
       <output message="tns:AddResponse"/>
     </operation>
+    <operation name="Subtract">
+      <input message="tns:SubtractRequest"/>
+      <output message="tns:SubtractResponse"/>
+    </operation>
+    <operation name="Multiply">
+      <input message="tns:MultiplyRequest"/>
+      <output message="tns:MultiplyResponse"/>
+    </operation>
+    <operation name="Divide">
+      <input message="tns:DivideRequest"/>
+      <output message="tns:DivideResponse"/>
+    </operation>
+
   </portType>
 
   <!-- 4. binding -->
@@ -82,27 +167,60 @@
   <binding name="SoapBinding" type="tns:SoapPortType">
     <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
 
-     <operation name="sayHello">
-            <soap:operation soapAction="urn:sayHello"/>
-            <input>
-                <soap:body use="literal"/>
-            </input>
-            <output>
-                <soap:body use="literal"/>
-            </output>
-        </operation>
+    <operation name="sayHello">
+      <soap:operation soapAction="urn:sayHello"/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
 
     <operation name="Add">
       <soap:operation soapAction="http://example.com/calculator/Add"/>
-      <input><soap:body use="literal"/></input>
-      <output><soap:body use="literal"/></output>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+
+    <operation name="Subtract">
+      <soap:operation soapAction="http://example.com/calculator/Subtract"/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+
+    <operation name="Multiply">
+      <soap:operation soapAction="http://example.com/calculator/Multiply"/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="Divide">
+      <soap:operation soapAction="http://example.com/calculator/Divide"/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
     </operation>
   </binding>
 
   <!-- 5. service -->
   <service name="SoapService">
 
-    <port name="CalculatorPort" binding="tns:SoapBinding">
+    <port name="SoapPort" binding="tns:SoapBinding">
       <soap:address location="http://localhost/soap-learn/04/soap-server.php"/>
     </port>
   </service>

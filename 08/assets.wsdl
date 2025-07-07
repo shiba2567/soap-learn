@@ -1,0 +1,72 @@
+<?xml version="1.1" encoding="UTF-8"?>
+<definitions
+    name="AssetService"
+    targetNamespace="http://example.com/asset"
+    xmlns:tns="http://example.com/asset"
+    xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+    xmlns="http://schemas.xmlsoap.org/wsdl/">
+
+  <!-- 1. types -->
+  <types>
+    <xsd:schema targetNamespace="http://example.com/asset">
+      <xsd:element name="AssetsRequest">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="year" type="xsd:int"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="AssetsResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="assetDetails">
+                <xsd:complexType>
+                    <xsd:sequence>
+                    <xsd:element name="asset" type="xsd:anyType" maxOccurs="unbounded"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:schema>
+  </types>
+
+  <!-- 2. message -->
+  <message name="GetAssetsRequest">
+    <part name="parameters" element="tns:AssetsRequest"/>
+  </message>
+
+  <message name="GetAssetsResponse">
+    <part name="parameters" element="tns:AssetsResponse"/>
+  </message>
+
+  <!-- 3. portType -->
+  <portType name="AssetPortType">
+    <operation name="GetAssets">
+      <input message="tns:GetAssetsRequest"/>
+      <output message="tns:GetAssetsResponse"/>
+    </operation>
+  </portType>
+
+  <!-- 4. binding -->
+  <binding name="AssetBinding" type="tns:AssetPortType">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <operation name="GetAssets">
+      <soap:operation soapAction="http://example.com/asset/GetAssets"/>
+      <input><soap:body use="literal"/></input>
+      <output><soap:body use="literal"/></output>
+    </operation>
+  </binding>
+
+  <!-- 5. service -->
+  <service name="AssetService">
+    <port name="AssetPort" binding="tns:AssetBinding">
+      <soap:address location="http://localhost/soap-learn/08/soap-server.php"/>
+    </port>
+    </service>
+</definitions>
+<!-- End of file: 06/assets.wsdl -->

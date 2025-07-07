@@ -8,8 +8,17 @@ try {
         'exceptions' => true, // เปิดการโยนข้อผิดพลาด
     ]);
 
+    /*
+    echo "<pre>";
+    print_r($client->__getFunctions()); // แสดงฟังก์ชันที่มีใน WSDL
+    echo "</pre>";
+    echo "<pre>";
+    print_r($client->__getTypes()); // แสดงประเภทข้อมูลที่มีใน WSDL
+    echo "</pre>";
+    */
+   
     // Call the service
-    $result = $client->GetAsset(['assetId' => 2]); // เปลี่ยนเป็น ID ของสินทรัพย์ที่ต้องการ
+    $result = $client->GetAsset(['assetId' => 1]); // เปลี่ยนเป็น ID ของสินทรัพย์ที่ต้องการ
 
     if (isset($result->error)) {
         throw new Exception($result->error);
